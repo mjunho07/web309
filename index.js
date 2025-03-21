@@ -38,6 +38,7 @@ mongoose
     .catch(e => console.error(e))
 
 
+
 //mongose set
 const WritingSchema = new Schema({
     title: String,
@@ -48,8 +49,12 @@ const WritingSchema = new Schema({
     }
 })
 
-const Writing = mongoose.model('Writing', WritingSchema)
+const passwordSchema = new Schema({
+    password: String,
+})
 
+const Writing = mongoose.model('Writing', WritingSchema)
+const Password = mongoose.model('Password', passwordSchema)
 // middleware
 // main page GET
 app.get('/', async (req, res) => {
@@ -87,6 +92,23 @@ app.post('/write', async (req, res) => {
     
 });
 
+app.get('/login',async (req, res) => { //async
+    res.render('login');
+});
+
+app.post('/login', async (req, res) => {
+    const passwordInput = req.body.password;
+
+    const password = await Password.findOne({});
+    if(passwordInput == password.password)
+    {
+        let writings = await Writing.find({})
+        res.render('main', {list: writings})
+    }
+    else{
+        res.render('login')
+    }
+})
 // mongodb에서 모든 document는 ObjectId라는 객체로 고유의 id값읋 _id (key)에 담고 있음
 app.get('/detail/:id', async (req, res) => {
     const id = req.params.id;

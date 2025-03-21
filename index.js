@@ -77,7 +77,6 @@ app.post('/write', async (req, res) => {
     })
 
     const result = await writing.save().then((result) => {
-        console.log('success')
         res.render('detail', {'detail': result });
     }).catch(e => {
         console.error(e)

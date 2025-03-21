@@ -57,9 +57,9 @@ app.get('/', async (req, res) => {
     // const writings = JSON.parse(fileData)
 
     //find에 인수가 없으면 Writing으로 이루어진 모든 객체를 가져옴 Writing = DB?
-    let writings = await Writing.find({})
+    // let writings = await Writing.find({})
     
-    res.render('main', {list: writings});
+    res.render('main');//, {list: writings}
 });
 
 app.get('/write',async (req, res) => { //async
@@ -77,11 +77,14 @@ app.post('/write', async (req, res) => {
     })
 
     const result = await writing.save().then((result) => {
-        res.render('detail', {'detail': result });
+        // res.render('detail', {'detail': result });
+        res.render('main');
+        
     }).catch(e => {
         console.error(e)
         res.render('write')
     })
+    
 });
 
 // mongodb에서 모든 document는 ObjectId라는 객체로 고유의 id값읋 _id (key)에 담고 있음

@@ -1,4 +1,28 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    {% if list %}
+        <table class="table"><!--부트스트랩 어서 딸려온거임?-->
+            <tr>
+                <th>글 제목</th>
+                <th>글 내용</th>
+            </tr>
+            {% for writing in list %}
+                <tr>
+                    <td><a href="/detail/{{ writing.id }}">{{writing.title}}</a></td>
+                    <td>{{writing.contents}}</td>
+                </tr>
+            {% endfor %}
+            
+        </table>
+    {% else %}
+        <p>
+            <h4>사용법</h4>
+            <ol>
+                <li>우측 상단에 "글 작성" 버튼 클릭</li>
+                <li>요청사항 입력<br><h6>ex1 : 우리반이 ~ 했으면 좋겠다,<br>ex2 : 반장 or 부반장이 ~한 점이 부족하다</h6></li>
+                <li>"글 작성 완료" 클릭</li>
+            </ol>
+        </p>
+    {% endif %}
 {% endblock %}

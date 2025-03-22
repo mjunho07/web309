@@ -11,6 +11,7 @@ import { stringify } from 'querystring';
 import mongoose from 'mongoose';
 
 
+
 const app = express();
 
 const __dirname = path.resolve();
@@ -30,6 +31,7 @@ nunjucks.configure('views', {
 })
 
 const {Schema} = mongoose
+
 
 // mongoose connect
 mongoose
@@ -55,6 +57,7 @@ const passwordSchema = new Schema({
 
 const Writing = mongoose.model('Writing', WritingSchema)
 const Password = mongoose.model('Password', passwordSchema)
+
 // middleware
 // main page GET
 app.get('/', async (req, res) => {

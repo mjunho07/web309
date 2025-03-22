@@ -74,11 +74,12 @@ app.get('/write',async (req, res) => { //async
 app.post('/write', async (req, res) => {
     const title = req.body.title;
     const contents = req.body.contents;
-
+    const date = req.body.date
     //mongodb에 저장
     const writing = new Writing({
         title: title,
         contents: contents,
+        date: date,
     })
 
     const result = await writing.save().then((result) => {

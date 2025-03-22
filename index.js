@@ -74,6 +74,7 @@ app.get('/write',async (req, res) => { //async
 app.post('/write', async (req, res) => {
     const title = req.body.title;
     const contents = req.body.contents;
+    
     //mongodb에 저장
     const writing = new Writing({
         title: title,
